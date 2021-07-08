@@ -1,0 +1,16 @@
+1. Z jakiej bazy korzysta Twoja aplikacja?
+
+  Relacyjna baza danych
+
+2. Jakich bibliotek używasz w swoim projekcie?
+
+  a) Hibernate
+  b) Spring
+  c) Lombok
+
+3. Z jakich metod HTTP korzysta Twoja aplikacja?
+
+  a) GET – do pobierania zapisanych zadań
+	b) POST – do dodawania nowych zadań
+	c) PUT – do edycji istniejących zadań
+  d) DELETE – do usuwania istniejących zadań
