@@ -33,10 +33,10 @@ dependencies {
 //	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
-jar {
-	enabled = true
-	archiveClassifier = ''
-}
+//jar {
+//	enabled = true
+//	archiveClassifier = ''
+//}
 
 test {
 	useJUnitPlatform()
