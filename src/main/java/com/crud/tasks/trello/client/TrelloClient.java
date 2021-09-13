@@ -58,7 +58,7 @@ public class TrelloClient {
                 .queryParam("key", trelloAppKey)
                 .queryParam("token", trelloToken)
                 .queryParam("name", trelloCardDto.getName())
-                .queryParam("description", trelloCardDto.getDescription())
+                .queryParam("desc", trelloCardDto.getDesc())
                 .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getIdList())
                 .build()
