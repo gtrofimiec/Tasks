@@ -33,19 +33,19 @@ dependencies {
 //	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
-//jar {
-//	enabled = true
-//	archiveClassifier = ''
-//}
-
 jar {
-	manifest {
-		attributes(
-				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-				'Main-Class': 'com.crud.tasks.TasksApplication'
-		)
-	}
+	enabled = true
+//	archiveClassifier = ''
 }
+
+//jar {
+//	manifest {
+//		attributes(
+//				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+//				'Main-Class': 'com.crud.tasks.TasksApplication'
+//		)
+//	}
+//}
 
 test {
 	useJUnitPlatform()
