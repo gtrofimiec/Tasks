@@ -11,4 +11,5 @@ public class TrelloCardDto {
     private String desc;
     private String pos;
     private String idList;
+//    private String badges;
 }
