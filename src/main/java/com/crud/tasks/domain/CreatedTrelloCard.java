@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +22,7 @@ public class CreatedTrelloCard {
     @JsonProperty("shortUrl")
     private String shortUrl;
 
-//    @JsonProperty("badges")
-//    private String badges;
+    @JsonProperty("badges")
+    private TrelloBadgesDto badges;
 
 }

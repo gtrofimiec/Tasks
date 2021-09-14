@@ -47,8 +47,14 @@ public class TrelloController {
         });
     }
 
+    @GetMapping("getTrelloCards")
+    public void getTrelloCards() {
+
+    }
+
     @PostMapping("createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        System.out.println(trelloClient.createNewCard(trelloCardDto));
         return trelloClient.createNewCard(trelloCardDto);
     }
 }
