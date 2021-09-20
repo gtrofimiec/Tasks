@@ -27,16 +27,16 @@ class SimpleEmailServiceTest {
         //Given
         Mail mail = Mail.builder()
                 .mailTo("test@test.com")
-                .toCc(null)
                 .subject("test")
                 .message("Test Message")
+                .toCc(null)
                 .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        mailMessage.setCc(mail.getToCc());
 
         //When
         simpleEmailService.send(mail);
