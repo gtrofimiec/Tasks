@@ -15,18 +15,15 @@ import java.util.List;
 @CrossOrigin("*")
 public class TrelloController {
 
-//    private final TrelloClient trelloClient;
     private final TrelloService trelloService;
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-
         return trelloService.fetchTrelloBoards();
     }
 
     @PostMapping("createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-
         return trelloService.createTrelloCard(trelloCardDto);
     }
 }
