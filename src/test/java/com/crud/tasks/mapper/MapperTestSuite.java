@@ -24,8 +24,7 @@ public class MapperTestSuite {
     void shouldMapTrelloBoardToBoardTest() {
         //Given
         List<TrelloBoardDto> trelloBoardDtoList = new ArrayList<>();
-        List<TrelloListDto> trelloListDto = new ArrayList<>();
-        TrelloBoardDto trelloBoardDto = new TrelloBoardDto("0","name", trelloListDto);
+        TrelloBoardDto trelloBoardDto = new TrelloBoardDto("0","name", new ArrayList<TrelloListDto>());
         trelloBoardDtoList.add(trelloBoardDto);
 
         //When
