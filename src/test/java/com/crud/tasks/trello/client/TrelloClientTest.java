@@ -1,6 +1,8 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.*;
+import com.crud.tasks.domain.Dto.CreatedTrelloCardDto;
+import com.crud.tasks.domain.Dto.TrelloBoardDto;
+import com.crud.tasks.domain.Dto.TrelloCardDto;
 import com.crud.tasks.trello.config.TrelloConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
