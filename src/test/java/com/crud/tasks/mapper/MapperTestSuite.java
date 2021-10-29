@@ -95,7 +95,7 @@ public class MapperTestSuite {
         //When
         TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
         String cardDtoName = trelloCardDto.getName();
-        String cardDtoDesc = trelloCardDto.getDesc();
+        String cardDtoDesc = trelloCardDto.getDescription();
         String cardDtoPos = trelloCardDto.getPos();
         String cardDtoListId = trelloCardDto.getIdList();
 
@@ -121,7 +121,7 @@ public class MapperTestSuite {
 
         //Then
         assertEquals(cardName, trelloCardDto.getName());
-        assertEquals(cardDesc, trelloCardDto.getDesc());
+        assertEquals(cardDesc, trelloCardDto.getDescription());
         assertEquals(cardPos, trelloCardDto.getPos());
         assertEquals(cardListId, trelloCardDto.getIdList());
     }
