@@ -1,6 +1,8 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.Dto.TaskDto;
+import com.crud.tasks.domain.Task;
+import com.google.gson.Gson;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig
 @WebMvcTest(TaskController.class)
@@ -63,14 +66,62 @@ class TaskControllerTest {
     }
 
     @Test
-    void deleteTask() {
+    void shouldDeleteTask() throws Exception {
+
+        //Given
+        Task task = new Task(0L, "title", "content");
+        Long taskId = task.getId();
+//        doCallRealMethod().when(taskController).deleteTask(taskId);
+        taskController.deleteTask(taskId);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .delete("/v1/task/deleteTask?taskId=0")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
     }
 
     @Test
-    void updateTask() {
+    void updateTask() throws Exception {
+
+        //Given
+        TaskDto taskDto = new TaskDto(0L, "title", "content");
+        when(taskController.updateTask(taskDto)).thenReturn(taskDto);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(taskDto);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put("/v1/task/updateTask")
+                        .content(jsonContent)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void createTask() {
+    void shouldCreateTask() throws Exception {
+
+        //Given
+        TaskDto taskDto = new TaskDto(0L, "title", "content");
+
+//        doCallRealMethod().when(taskController).createTask(taskDto);
+        taskController.createTask(taskDto);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(taskDto);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/v1/task/createTask")
+                        .content(jsonContent)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
