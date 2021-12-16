@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,34 +58,30 @@ class TaskControllerTest {
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/task/getTask?taskId=0")
+                        .get("/v1/task/getTask")
+                        .param("taskId", String.valueOf(taskId))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(0)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("title")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("content")));
-
     }
 
     @Test
-    void shouldDeleteTask() throws Exception {
+    void shouldDeleteTask() {
 
         //Given
         Task task = new Task(0L, "title", "content");
         Long taskId = task.getId();
-//        doCallRealMethod().when(taskController).deleteTask(taskId);
+
+        //When
         taskController.deleteTask(taskId);
 
-        //When & Then
-        mockMvc
-                .perform(MockMvcRequestBuilders
-                        .delete("/v1/task/deleteTask?taskId=0")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
-    }
+        //Then
+        verify(taskController).deleteTask(taskId);
+     }
 
     @Test
-    void updateTask() throws Exception {
+    void shouldUpdateTask() throws Exception {
 
         //Given
         TaskDto taskDto = new TaskDto(0L, "title", "content");
@@ -104,24 +101,15 @@ class TaskControllerTest {
     }
 
     @Test
-    void shouldCreateTask() throws Exception {
+    void shouldCreateTask() {
 
         //Given
         TaskDto taskDto = new TaskDto(0L, "title", "content");
 
-//        doCallRealMethod().when(taskController).createTask(taskDto);
+        //When
         taskController.createTask(taskDto);
 
-        Gson gson = new Gson();
-        String jsonContent = gson.toJson(taskDto);
-
-        //When & Then
-        mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/v1/task/createTask")
-                        .content(jsonContent)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        //Then
+        verify(taskController).createTask(taskDto);
     }
 }
