@@ -10,6 +10,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.util.Optional;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -35,8 +38,18 @@ public class SimpleEmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
-//            messageHelper.setCc(mail.getToCc());
+//            messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+            messageHelper.setText(mailCreatorService.buildInformationEmail(mail.getMessage()), true);
+            Optional.ofNullable(mail.getToCc()).ifPresent(
+                    cc -> {
+                        try {
+                            messageHelper.setCc(mail.getToCc());
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            );
+            //            messageHelper.setCc(mail.getToCc());
         };
     }
 }

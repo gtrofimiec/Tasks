@@ -31,6 +31,19 @@ public class EmailScheduler {
         );
     }
 
+//    @Scheduled(fixedDelay = 2000000)
+//    @Scheduled(cron = "0 0 10 * * *")
+//    public void sendTasksAmountEmail() {
+//        simpleEmailService.send(
+//                new Mail(
+//                        adminConfig.getAdminMail(),
+//                        SUBJECT,
+//                        tasksAmountMessage(),
+//                        null
+//                )
+//        );
+//    }
+
     public String message(long size) {
         String message = "Currently in database you got: " + size + " task";
         if(size!=1) {
@@ -38,4 +51,24 @@ public class EmailScheduler {
         }
         return message;
     }
+
+//    public String tasksAmountMessage() {
+//        String DB_URL = "jdbc:mysql://localhost:3306/task_crud";
+//        String USER = "root";
+//        String PASS = "George01!";
+//        String QUERY = "SELECT COUNT(*) AS total FROM tasks";
+//        String result = "";
+//
+//        try {
+//            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery(QUERY);
+//            rs.next();
+//            result = Integer.toString(rs.getInt("total"));
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return "Number of tasks available in the database: " + result;
+//    }
 }
