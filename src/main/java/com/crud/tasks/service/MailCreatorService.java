@@ -48,7 +48,7 @@ public class MailCreatorService {
 
     public String buildInformationEmail(String message) {
 
-        List <String> taskList = taskRepository.findAll().stream()
+        List <String> tasksList = taskRepository.findAll().stream()
                 .map(Task::getTitle)
                 .collect(Collectors.toList());
 
@@ -60,7 +60,7 @@ public class MailCreatorService {
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("admin_config", adminConfig);
         context.setVariable("company_details", adminConfig.getCompanyName());
-        context.setVariable("tasks_list", taskList);
+        context.setVariable("tasks_list", tasksList);
         return templateEngine.process("mail/number-of-tasks-available-in-the-database", context);
     }
 }
